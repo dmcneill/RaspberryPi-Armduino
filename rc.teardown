@@ -13,5 +13,5 @@ teardown 27 1
 teardown 23 0
 teardown 24 1 
 teardown 25 0
-
+exit 0
 

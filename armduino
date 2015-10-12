@@ -1,0 +1,34 @@
+#! /bin/sh
+# Starts and stops armduino
+# /etc/init.d/armduino
+### BEGIN INIT INFO
+# Provides: armduino
+# Required-Start:   $syslog
+# Required-Stop:    $syslog
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    Start / stop Armduino
+### END INIT INFO
+
+#Load up node red when called
+case "$1" in
+
+start)
+    echo "Starting Armduino.."
+    /etc/rc.gpio
+;;
+
+stop)
+    echo "Stopping Armduino.."
+    /etc/rc.teardown
+;;
+
+restart)
+    echo "Restarting Node-Red.."
+    $0 stop
+    $0 start
+;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac

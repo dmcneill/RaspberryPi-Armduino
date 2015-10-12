@@ -15,7 +15,6 @@ setup() {
   local bit="$1"
   local dir="$2"
   local val="$3"
-# echo "setting bit $bit for direction '$dir' value '$val'"
   if [ -d /sys/class/gpio/gpio${bit} ]; then
     echo $bit > /sys/class/gpio/unexport
   fi
@@ -37,7 +36,6 @@ setup() {
 output() {
   local bit="$1"
   local val="$2"
-# echo "setting bit $bit for value '$val'"
   echo $val > /sys/class/gpio/gpio${bit}/value
 }
 
