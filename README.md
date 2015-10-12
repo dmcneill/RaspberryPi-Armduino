@@ -1,7 +1,7 @@
 # RaspberryPi-Armduino
 Script files to setup the RaspberryPi for using the Armduino board.
 
-Installation:
+Armduino Installation:
 
 Copy the three scripts, rc.function, rc.gpio and rc.teardown to /etc:
 
@@ -20,3 +20,10 @@ Setup the armduino script to run as a service:
     sudo update-rc.d armduino defaults
     sudo service armduino start
 
+Minicom Installation:
+
+You can use 'minicom -s' to set the serial port OR you
+can copy the 'minirc.dfl' file to /etc/minicom:
+
+    sudo chown root.root minirc.dfl
+    cp minirc.dfl /etc/minicom
