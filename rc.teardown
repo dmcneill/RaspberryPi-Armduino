@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# rc.teardown
+#
+# This script is for tearing down the GPIOs for use with the Armduino.
+
+source /etc/rc.function
+
+# -RST --> Active
+output 17 0
+teardown 18 1
+teardown 27 1
+teardown 23 0
+teardown 24 1 
+teardown 25 0
+
+

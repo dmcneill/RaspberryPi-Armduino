@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# rc.function
+#
+# This script defines functions for setting up GPIO on the Armduino
+
+#------------------------------------
+# Function for GPIO bit manipulation
+#------------------------------------
+# $1: bit number
+# $2: direction { in | out }
+# $3: output { 0 : 1 }
+#------------------------------------
+setup() {
+  local bit="$1"
+  local dir="$2"
+  local val="$3"
+# echo "setting bit $bit for direction '$dir' value '$val'"
+  if [ -d /sys/class/gpio/gpio${bit} ]; then
+    echo $bit > /sys/class/gpio/unexport
+  fi
+  echo $bit > /sys/class/gpio/export
+  echo $dir > /sys/class/gpio/gpio${bit}/direction
+  if [ "$dir" = "out" ]; then
+    echo $val > /sys/class/gpio/gpio${bit}/value
+  fi
+  chown root.gpio /sys/class/gpio/gpio${bit}/value
+  chmod 660 /sys/class/gpio/gpio${bit}/value
+}
+
+#------------------------------------
+# Function for GPIO output
+#------------------------------------
+# $1: bit number
+# $2: output { 0 : 1 }
+#------------------------------------
+output() {
+  local bit="$1"
+  local val="$2"
+# echo "setting bit $bit for value '$val'"
+  echo $val > /sys/class/gpio/gpio${bit}/value
+}
+
+#------------------------------------
+# Function for GPIO teardown
+#------------------------------------
+# $1: bit number
+# $2: output { 0 : 1 }
+#------------------------------------
+teardown() {
+  local bit="$1"
+  local val="$2"
+  echo $val > /sys/class/gpio/gpio${bit}/value
+  echo $bit > /sys/class/gpio/unexport
+}

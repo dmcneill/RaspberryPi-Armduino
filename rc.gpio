@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# rc.gpio
+#
+# This script is for setting up the GPIOs for use with the Armduino.
+
+source /etc/rc.function
+
+#--------------------------------------
+# Setup GPIO for -RST and -ISP signals
+#--------------------------------------
+
+# -RST --> Active
+setup 17 out 0
+
+# -ISP0 --> Application
+setup 18 out 1
+
+# -ISP1 --> Application
+setup 27 out 1
+if [ "$1" ]; then
+    # SWCLK --> Inactive
+    setup 23 in 1
+
+    # SWDIO --> Inactive
+    setup 24 in 1
+else
+    # SWCLK --> Inactive
+    setup 23 out 0
+
+    # SWDIO --> Inactive
+    setup 24 out 1
+fi
+# LED --> Inactive
+setup 25 out 1
+
+# -RST --> Inactive
+output 17 1
+
+
