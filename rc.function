@@ -4,13 +4,7 @@
 #
 # This script defines functions for setting up GPIO on the Armduino
 
-#------------------------------------
 # Function for GPIO bit manipulation
-#------------------------------------
-# $1: bit number
-# $2: direction { in | out }
-# $3: output { 0 : 1 }
-#------------------------------------
 setup() {
   local bit="$1"
   local dir="$2"
@@ -27,24 +21,14 @@ setup() {
   chmod 660 /sys/class/gpio/gpio${bit}/value
 }
 
-#------------------------------------
 # Function for GPIO output
-#------------------------------------
-# $1: bit number
-# $2: output { 0 : 1 }
-#------------------------------------
 output() {
   local bit="$1"
   local val="$2"
   echo $val > /sys/class/gpio/gpio${bit}/value
 }
 
-#------------------------------------
 # Function for GPIO teardown
-#------------------------------------
-# $1: bit number
-# $2: output { 0 : 1 }
-#------------------------------------
 teardown() {
   local bit="$1"
   local val="$2"
