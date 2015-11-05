@@ -25,13 +25,17 @@ setup() {
 output() {
   local bit="$1"
   local val="$2"
-  echo $val > /sys/class/gpio/gpio${bit}/value
+  if [ -d /sys/class/gpio/gpio${bit} ]; then
+    echo $val > /sys/class/gpio/gpio${bit}/value
+  fi
 }
 
 # Function for GPIO teardown
 teardown() {
   local bit="$1"
   local val="$2"
-  echo $val > /sys/class/gpio/gpio${bit}/value
-  echo $bit > /sys/class/gpio/unexport
+  if [ -d /sys/class/gpio/gpio${bit} ]; then
+    echo $val > /sys/class/gpio/gpio${bit}/value
+    echo $bit > /sys/class/gpio/unexport
+  fi
 }
