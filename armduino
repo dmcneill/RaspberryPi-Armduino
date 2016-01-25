@@ -24,7 +24,7 @@ stop)
 ;;
 
 restart)
-    echo "Restarting Node-Red.."
+    echo "Restarting Armduino.."
     $0 stop
     $0 start
 ;;
