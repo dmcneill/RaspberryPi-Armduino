@@ -26,4 +26,4 @@ You can use 'minicom -s' to set the serial port OR you
 can copy the 'minirc.dfl' file to /etc/minicom:
 
     sudo chown root.root minirc.dfl
-    cp minirc.dfl /etc/minicom
+    sudo cp minirc.dfl /etc/minicom
